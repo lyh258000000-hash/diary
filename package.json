@@ -6,9 +6,15 @@
     "install:all": "cd backend && npm install && cd ../frontend && npm install",
     "dev:backend": "cd backend && npm run dev",
     "dev:frontend": "cd frontend && npm run dev",
-    "build": "cd frontend && npm run build"
+    "build": "cd frontend && npm run build",
+    "dev": "cd frontend && npm run dev",
+    "postinstall": "cd frontend && npm install"
   },
-  "keywords": ["diary", "fullstack", "vue", "mysql"],
+  "dependencies": {
+    "pg": "^8.11.0"
+  },
+  "devDependencies": {},
+  "keywords": ["diary", "fullstack", "vue", "postgresql", "supabase", "vercel"],
   "author": "",
   "license": "ISC"
 }
