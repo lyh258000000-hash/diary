@@ -1,5 +1,6 @@
 {
   "version": 2,
+  "installCommand": "cd frontend && npm install",
   "builds": [
     {
       "src": "api/**/*.js",
