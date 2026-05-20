@@ -7,8 +7,7 @@
     "dev:backend": "cd backend && npm run dev",
     "dev:frontend": "cd frontend && npm run dev",
     "build": "cd frontend && npm run build",
-    "dev": "cd frontend && npm run dev",
-    "postinstall": "cd frontend && npm install"
+    "dev": "cd frontend && npm run dev"
   },
   "dependencies": {
     "pg": "^8.11.0"

@@ -1,7 +1,5 @@
 {
   "version": 2,
-  "buildCommand": "cd frontend && npm install && npm run build && cd .. && npm install",
-  "installCommand": "cd frontend && npm install",
   "builds": [
     {
       "src": "api/**/*.js",
@@ -17,10 +15,6 @@
     {
       "src": "/api/(.*)",
       "dest": "/api/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/frontend/dist/$1"
     }
   ]
 }
