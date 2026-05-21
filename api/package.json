@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "pg": "^8.21.0"
+    "mysql2": "^3.6.0"
   }
 }

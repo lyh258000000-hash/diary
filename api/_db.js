@@ -1,39 +1,39 @@
-const { Pool } = require('pg');
+const mysql = require('mysql2/promise');
 
 let pool = null;
 
 function getPool() {
   if (!pool) {
-    pool = new Pool({
-      host: process.env.DB_HOST,
-      port: process.env.DB_PORT || 5432,
-      user: process.env.DB_USER,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB_NAME || 'postgres',
-      max: 20,
-      idleTimeoutMillis: 30000,
-      connectionTimeoutMillis: 2000,
+    pool = mysql.createPool({
+      host: process.env.MYSQL_HOST,
+      port: parseInt(process.env.MYSQL_PORT) || 3306,
+      user: process.env.MYSQL_USER,
+      password: process.env.MYSQL_PASSWORD,
+      database: process.env.MYSQL_DATABASE,
+      waitForConnections: true,
+      connectionLimit: 10,
+      queueLimit: 0
     });
   }
   return pool;
 }
 
 async function initTable() {
-  const client = await getPool().connect();
+  const connection = await getPool().getConnection();
   try {
-    await client.query(`
+    await connection.query(`
       CREATE TABLE IF NOT EXISTS diaries (
-        id SERIAL PRIMARY KEY,
+        id INT AUTO_INCREMENT PRIMARY KEY,
         title VARCHAR(255) NOT NULL,
         content TEXT NOT NULL,
         weather VARCHAR(50),
         mood VARCHAR(50),
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
       )
     `);
   } finally {
-    client.release();
+    connection.release();
   }
 }
 
