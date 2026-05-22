@@ -1,5 +1,6 @@
 {
   "version": 2,
+  "outputDirectory": "frontend/dist",
   "functions": {
     "api/**/*.js": {
       "includeFiles": "node_modules/mysql2/**"
